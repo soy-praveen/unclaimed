@@ -52,8 +52,8 @@ input:focus { border-color: var(--amber); }
 
 .bar { display: flex; gap: 8px; align-items: center; margin: 10px 0; flex-wrap: wrap; }
 .bar .sp { flex: 1; }
-.seg { display: inline-flex; border: 1px solid var(--line2); border-radius: 3px; overflow: hidden; }
-.seg button { border: 0; background: transparent; color: var(--muted); padding: 5px 10px; border-right: 1px solid var(--line2); }
+.seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--line2); border-radius: 3px; overflow: hidden; max-width: 100%; }
+.seg button { border: 0; background: transparent; color: var(--muted); padding: 5px 10px; border-right: 1px solid var(--line2); border-bottom: 1px solid transparent; }
 .seg button:last-child { border-right: 0; }
 .seg button.on { background: var(--bg2); color: var(--ink); }
 

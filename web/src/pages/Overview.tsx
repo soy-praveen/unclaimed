@@ -17,7 +17,8 @@ export default function Overview() {
     if (!snap) return [];
     return snap.markets.filter((m) => (filter === "all" || series(m) === filter) && (phase === "all" || m.phase === phase || (phase === "unclaimed" && BigInt(m.unclaimed.total) > 0n)));
   }, [snap, filter, phase]);
-  const seriesList = useMemo(() => (snap ? [...new Set(snap.markets.map(series))].sort() : []), [snap]);
+  // only the DreamDEX BTC/ETH series get filter buttons; other creators' test markets stay reachable under "all series"
+  const seriesList = useMemo(() => (snap ? [...new Set(snap.markets.filter((m) => m.asset === "BTC" || m.asset === "ETH").map(series))].sort((a, b) => a.localeCompare(b, undefined, { numeric: true })) : []), [snap]);
 
   if (!snap) return <div className="note">Loading the settlement snapshot…</div>;
   const s = snap.stats as Record<string, number | string>;

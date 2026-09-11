@@ -20,7 +20,7 @@ Unclaimed is the missing resolver and settlement surface:
 - **Claim desk**: paste any address or connect; live ERC-6909 balances across every window, split into settled and open; *Claim all* sends one `redeemMany` for everything, with the one-time `setOperator` handled.
 - **Resolver keeper**: a script that pokes late oracles, voids dead windows, and sweeps its own winnings.
 
-Everything is rebuilt from chain data: module `MarketCreated` logs, multicalled market views, adapter answers, and ERC-6909 Transfer logs netted per holder. No indexer service, no database.
+Everything is rebuilt from chain data: module `MarketCreated` logs, multicalled market views, adapter answers, and ERC-6909 Transfer logs netted per holder. No indexer service, no database. A GitHub Actions cron re-runs the indexer every 30 minutes and republishes, so the live site is always within half an hour of the chain.
 
 Why it matters for DreamDEX: pull-based settlement is invisible money, and invisible money is a trust problem for every bot, vault and consumer app in the ecosystem. This makes resolution legible and claiming one click, which is exactly the "resolver experience" gap the hackathon starter template called out.
 

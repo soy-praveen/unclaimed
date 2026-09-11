@@ -36,7 +36,7 @@ No indexer service and no database. `indexer/index.mjs` rebuilds everything from
 3. `pullNumericAnswer` and `PRICE_DECIMALS` on each market's adapter, for the close price.
 4. ERC-6909 `Transfer` logs from the outcome-token singleton, netted per holder and id. Because outcome ids only exist after their window is created, balances computed from logs inside the range are exact, not approximate.
 
-The result is written to `web/public/data/snapshot.json`. The web app loads it, then re-reads the phase and payout of the newest windows live every 15 seconds, and reads a wallet's balances live when you open the claim desk. Somnia caps `eth_getLogs` at 1000 blocks, so the indexer pages in parallel; six hours of history is a few minutes.
+The result is written to `web/public/data/snapshot.json`. A GitHub Actions workflow (`.github/workflows/snapshot.yml`) re-runs the indexer every 30 minutes and republishes the site, so the live app stays current without any server. The web app loads it, then re-reads the phase and payout of the newest windows live every 15 seconds, and reads a wallet's balances live when you open the claim desk. Somnia caps `eth_getLogs` at 1000 blocks, so the indexer pages in parallel; six hours of history is a few minutes.
 
 `indexer/keeper.mjs` is a small resolver keeper: it scans recent windows, pokes the oracle for anything unresolved past a grace period, voids anything past its settlement window, and with `CLAIM=1` sweeps its own wallet's winnings with `redeemMany`.
 

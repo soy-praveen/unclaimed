@@ -1,0 +1,15 @@
+{
+  "name": "unclaimed",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Settlement explorer and claim keeper for DreamDEX Event Contracts on Somnia.",
+  "scripts": {
+    "index": "node indexer/index.mjs",
+    "keeper": "node indexer/keeper.mjs"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "viem": "^2.21.0"
+  }
+}

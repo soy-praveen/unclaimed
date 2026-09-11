@@ -15,7 +15,7 @@
   --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 * { box-sizing: border-box; }
-html, body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--mono); font-size: 13px; }
+html, body { margin: 0; overflow-x: hidden; background: var(--bg); color: var(--ink); font-family: var(--mono); font-size: 13px; }
 a { color: var(--blue); text-decoration: none; }
 a:hover { text-decoration: underline; }
 button { font-family: inherit; font-size: 12px; cursor: pointer; }
@@ -25,7 +25,7 @@ input:focus { border-color: var(--amber); }
 
 .wrap { max-width: 1400px; margin: 0 auto; padding: 0 18px 60px; }
 .top { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); gap: 12px; flex-wrap: wrap; }
-.brand { display: flex; align-items: baseline; gap: 12px; }
+.brand { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; min-width: 0; }
 .brand .name { font-family: var(--sans); font-weight: 600; font-size: 18px; letter-spacing: -0.01em; }
 .brand .name b { color: var(--amber); font-weight: 600; }
 .brand .sub { color: var(--muted); font-size: 11px; }
@@ -103,3 +103,35 @@ input:focus { border-color: var(--amber); }
 .hero p { color: var(--muted); margin: 0; max-width: 820px; line-height: 1.5; font-size: 13.5px; }
 .stalebar { overflow-wrap: anywhere; font-size: 11px; color: var(--dim); margin: 6px 0 0; }
 @media (max-width: 900px) { .cols { grid-template-columns: 1fr; } .kv { grid-template-columns: 1fr; } }
+
+/* motion */
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pop { 0% { transform: scale(0.96); } 100% { transform: none; } }
+.hero, .tiles, .bar, .wrapx, .panel { animation: rise 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.tiles { animation-delay: 60ms; }
+.bar { animation-delay: 110ms; }
+.wrapx, .panel { animation-delay: 160ms; }
+.tile { transition: border-color 0.2s ease, transform 0.2s ease; }
+.tile:hover { border-color: var(--line2); transform: translateY(-1px); }
+.tile .v { display: inline-block; animation: pop 0.35s ease; }
+.tbl td { transition: background 0.15s ease; }
+.tbl tr.row td { transition: background 0.15s ease, color 0.15s ease; }
+.tbl .detail td { animation: fadein 0.3s ease; }
+.tbl .detail .kv, .tbl .detail .list { animation: rise 0.35s ease both; }
+.nav a { transition: color 0.15s ease, background 0.15s ease; }
+.nav a:hover { color: var(--ink); }
+.btn { transition: transform 0.12s ease, border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease; }
+.btn:active:not(:disabled) { transform: translateY(1px) scale(0.98); }
+.btn.amber:hover:not(:disabled) { box-shadow: 0 4px 16px rgba(242, 177, 59, 0.25); }
+.btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.seg button { transition: background 0.15s ease, color 0.15s ease; }
+.seg button:hover { color: var(--ink); }
+.pill { transition: color 0.2s ease, border-color 0.2s ease; }
+.list .li { transition: border-color 0.15s ease, transform 0.15s ease; }
+.list .li:hover { border-color: var(--line2); transform: translateX(2px); }
+.toast { animation: rise 0.25s ease both; }
+input { transition: border-color 0.15s ease, box-shadow 0.15s ease; }
+input:focus { box-shadow: 0 0 0 3px rgba(242, 177, 59, 0.12); }
+.note { animation: fadein 0.3s ease both; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }

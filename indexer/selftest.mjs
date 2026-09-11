@@ -17,7 +17,7 @@ const logs = await pagedLogs({ address: ADDR.module, event: marketCreatedEvent }
 const t = now();
 const live = logs
   .map((l) => l.args)
-  .filter((a) => (a.collateral || "").toLowerCase() === ADDR.collateral.toLowerCase() && Number(a.expiry) > t + 45)
+  .filter((a) => (a.collateral || "").toLowerCase() === ADDR.collateral.toLowerCase() && Number(a.expiry) > t + 45 && Number(a.expiry) - Number(a.tradingStart) >= 240)
   .sort((a, b) => Number(a.expiry) - Number(b.expiry));
 const m = live[0];
 if (!m) throw new Error("no live window");

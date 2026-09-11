@@ -65,7 +65,7 @@ export default function Claims({ lookup }: { lookup: string }) {
       </section>
 
       <div className="bar">
-        <input style={{ width: 420 }} placeholder="0x… any wallet, or connect yours" value={addr} onChange={(e) => setAddr(e.target.value.trim())} />
+        <input style={{ width: 420, maxWidth: "100%" }} placeholder="0x… any wallet, or connect yours" value={addr} onChange={(e) => setAddr(e.target.value.trim())} />
         {!wallet && (
           <button className="btn amber" onClick={connect}>
             Connect wallet

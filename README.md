@@ -6,7 +6,8 @@ Every window, how it settled, who is still holding winnings they never redeemed,
 
 Built for the Somnia x DreamDEX Event Contracts Hackathon. Runs against Somnia Shannon testnet.
 
-- Live app: _link in the submission_
+- Live app: https://soy-praveen.github.io/unclaimed/
+- Demo video: https://youtu.be/SiZHG9T8PCQ
 - Repo layout: `indexer/` (snapshot builder, resolver keeper, self-test), `web/` (Vite + React + viem)
 
 ## The problem it answers
